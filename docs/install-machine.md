@@ -9,69 +9,64 @@ weight=3
 +++
 <![end-metadata]-->
 
-## Install Docker Machine
+# Install Docker Machine
 
-Docker Machine is supported on Windows, OS X, and Linux and is installable as
-one standalone binary.  The links to the binaries for the various platforms and
-architectures are available at the [Github
-Release](https://github.com/docker/machine/releases/tag/v0.3.0) page.
+On OS X and Windows, Machine is installed along with other Docker products when
+you install the Docker Toolbox. For details on installing Docker Toolbox, see
+the <a href="https://docs.docker.com/installation/mac/" target="_blank">Mac OS X
+installation</a> instructions or <a
+href="https://docs.docker.com/installation/windows" target="_blank">Windows
+installation</a> instructions.
 
+If you only want Docker Machine, you can install the Machine binaries (the
+latest versions of which are located at
+https://github.com/docker/machine/releases/) directly by following the
+instructions in the next section.
 
-### OS X and Linux
+## Installing Machine Directly
 
-To install on OS X or Linux, download the proper binary to somewhere in your
-`PATH` (e.g. `/usr/local/bin`) and make it executable. For instance, to install on
-most OS X machines these commands should suffice:
+1. Install <a href="https://docs.docker.com/installation/"
+target="_blank">the Docker binary</a>.
 
-```
-$ curl -L https://github.com/docker/machine/releases/download/v0.3.0/docker-machine_darwin-amd64 > /usr/local/bin/docker-machine
-$ chmod +x /usr/local/bin/docker-machine
-```
+2. Download the archive containing the Docker Machine binaries and extract them
+to your PATH.
 
-For Linux, just substitute "linux" for "darwin" in the binary name above.
-
-Now you should be able to check the version with `docker-machine -v`:
-
-```
-$ docker-machine -v
-machine version 0.3.0
-```
-
-In order to run Docker commands on your machines without having to use SSH, make
-sure to install the Docker client as well, e.g.:
+Linux:
 
 ```
-$ curl -L https://get.docker.com/builds/Darwin/x86_64/docker-latest > /usr/local/bin/docker
-$ chmod +x /usr/local/bin/docker
+$ curl -L https://github.com/docker/machine/releases/download/v0.5.0/docker-machine_linux-amd64.zip >machine.zip && \
+  unzip machine.zip && \
+  rm machine.zip && \
+  mv docker-machine* /usr/local/bin
 ```
 
-### Windows
-
-Currently, Docker recommends that you install and use Docker Machine on Windows
-with [msysgit](https://msysgit.github.io/). This will provide you with some
-programs that Docker Machine relies on such as `ssh`, as well as a functioning
-shell.
-
-When you have installed msysgit, start up the terminal prompt and run the
-following commands. Here it is assumed that you are on a 64-bit Windows
-installation. If you are on a 32-bit installation, please substitute "i386" for
-"x86_64" in the URLs mentioned.
-
-First, install the Docker client binary:
+OSX:
 
 ```
-$ curl -L https://get.docker.com/builds/Windows/x86_64/docker-latest.exe > /bin/docker
+$ curl -L https://github.com/docker/machine/releases/download/v0.5.0/docker-machine_darwin-amd64.zip >machine.zip && \
+  unzip machine.zip && \
+  rm machine.zip && \
+  mv docker-machine* /usr/local/bin
 ```
 
-Next, install the Docker Machine binary:
+Windows (using Git Bash):
 
 ```
-$ curl -L https://github.com/docker/machine/releases/download/v0.3.0/docker-machine_windows-amd64.exe > /bin/docker-machine
+$ curl -L https://github.com/docker/machine/releases/download/v0.5.0/docker-machine_windows-amd64.zip >machine.zip && \
+  unzip machine.zip && \
+  rm machine.zip && \
+  mv docker-machine* /usr/local/bin
 ```
 
-Now running `docker-machine` should work.
+3. Check the installation by displaying the Machine version:
 
 ```
 $ docker-machine -v
-machine version 0.3.0
+machine version 0.5.0 (3e06852)
 ```
+
+## Where to go next
+
+* [Docker Machine overview](/)
+* [Docker Machine driver reference](drivers/index.md)
+* [Docker Machine subcommand reference](reference/index.md)
